@@ -1,0 +1,20 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var text, socket;
+  document.addEventListener("DOMContentLoaded", function() {
+    text = document.getElementById("text");
+    text.addEventListener("keypress", checkKey);
+    socket = io();
+  })
+
+  function checkKey(e) {
+    if(e.keyCode == 13) {
+      e.preventDefault();
+      socket.emit("command", text.value);
+      text.value = "";
+    }
+  }
+</script>
+<textarea id="text">
+
+</textarea>
